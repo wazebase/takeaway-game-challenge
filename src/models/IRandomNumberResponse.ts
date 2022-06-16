@@ -1,4 +1,4 @@
-export interface RandomNumberResponse {
+export interface IRandomNumberResponse {
     isFirst: boolean;
     isCorrectResult: boolean;
     number: number;

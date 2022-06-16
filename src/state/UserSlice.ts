@@ -1,5 +1,5 @@
 import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit'
-import {UserState} from "../models/UserState";
+import {IUserState} from "../models/IUserState";
 
 export const userSlice = createSlice({
     name: 'userInfo',
@@ -10,26 +10,26 @@ export const userSlice = createSlice({
         isLoggedIn: false,
     },
     reducers: {
-        resetUserState: (state: Draft<UserState>) => {
+        resetUserState: (state: Draft<IUserState>) => {
             state.username = '';
             state.userId = '';
             state.opponentName = '';
             state.isLoggedIn = false;
         },
-        addUserName: (state: Draft<UserState>, action: PayloadAction<string>) => {
+        addUserName: (state: Draft<IUserState>, action: PayloadAction<string>) => {
             state.username = action.payload;
             state.isLoggedIn = true;
         },
-        setOpponentName: (state: Draft<UserState>, action: PayloadAction<string>) => {
+        setOpponentName: (state: Draft<IUserState>, action: PayloadAction<string>) => {
             state.opponentName = action.payload;
         },
-        setUserId: (state: Draft<UserState>, action: PayloadAction<string>) => {
+        setUserId: (state: Draft<IUserState>, action: PayloadAction<string>) => {
             state.userId = action.payload;
         },
-        clearOpponentName: (state: Draft<UserState>) => {
+        clearOpponentName: (state: Draft<IUserState>) => {
             state.opponentName = '';
         },
-        clearUserName: (state: Draft<UserState>) => {
+        clearUserName: (state: Draft<IUserState>) => {
             state.username = '';
             state.isLoggedIn = false;
         },

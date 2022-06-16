@@ -1,19 +1,19 @@
 import store from "../store";
 import axios, {AxiosError, AxiosResponse} from "axios";
 import {addRooms, setCurrentRoomName, setCurrentRoomType} from "../state/RoomSlice";
-import {Room} from "../models/Room";
+import {IRoom} from "../models/IRoom";
 import {resetGameState} from "../state/GameSlice";
 import {clearOpponentName, setOpponentName} from "../state/UserSlice";
 import {joinNewRoom, leaveRoom} from "./socket.service";
 
 const roomService = () => {
     const getRooms = async (): Promise<void> => {
-        await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/rooms`).then((response: AxiosResponse<Room[]>) => {
+        await axios.get(`${process.env.REACT_APP_API_ENDPOINT}/rooms`).then((response: AxiosResponse<IRoom[]>) => {
             store.dispatch(addRooms(response.data));
         }).catch((errorResponse: AxiosError) => alert(errorResponse.message));
     }
 
-    const joinRoom = (room: Room): void => {
+    const joinRoom = (room: IRoom): void => {
         store.dispatch(resetGameState());
         store.dispatch(clearOpponentName());
         !!store.getState().roomInfo.currentRoomType && leaveRoom();

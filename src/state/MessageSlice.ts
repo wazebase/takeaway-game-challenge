@@ -1,6 +1,6 @@
 import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit'
-import {Message} from "../models/Message";
-import {MessageState} from "../models/MessageState";
+import {IMessage} from "../models/IMessage";
+import {IMessageState} from "../models/IMessageState";
 
 export const gameSlice = createSlice({
     name: 'messageInfo',
@@ -8,10 +8,10 @@ export const gameSlice = createSlice({
         messages: [],
     },
     reducers: {
-        addMessage: (state: Draft<MessageState>, action: PayloadAction<Message>) => {
+        addMessage: (state: Draft<IMessageState>, action: PayloadAction<IMessage>) => {
             state.messages = [...state.messages, action.payload];
         },
-        resetMessages: (state: Draft<MessageState>) => {
+        resetMessages: (state: Draft<IMessageState>) => {
             state.messages = [];
         }
     },

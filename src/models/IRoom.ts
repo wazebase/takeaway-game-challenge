@@ -1,6 +1,6 @@
 import {RoomType} from "../types/RoomType";
 
-export interface Room {
+export interface IRoom {
     id: string;
     name: string;
     owner: string;

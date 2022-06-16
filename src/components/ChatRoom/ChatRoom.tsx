@@ -6,12 +6,12 @@ import {clearOpponentName} from "../../state/UserSlice";
 import rightArrow from '../../assets/icons/right-arrow.svg';
 import './room.css';
 import {joinRoom} from "../../services/room.service";
-import {Room} from "../../models/Room";
-import {State} from "../../state/State";
-import {RoomState} from "../../models/RoomState";
+import {IRoom} from "../../models/IRoom";
+import {IState} from "../../state/IState";
+import {IRoomState} from "../../models/IRoomState";
 
-const ChatRoom = ({room}: {room: Room }) => {
-    const roomInfo: RoomState = useSelector((state: State) => state.roomInfo);
+const ChatRoom = ({room}: {room: IRoom }) => {
+    const roomInfo: IRoomState = useSelector((state: IState) => state.roomInfo);
     const [styles, setStyles] = useState<React.CSSProperties[]>([{}, {}]);
     const selectedArrowStyle: React.CSSProperties = {filter: 'invert(0%) sepia(0%) brightness(614%) contrast(314%)'};
     const selectedBoxStyle: React.CSSProperties = {backgroundColor: '#1574F5', color: 'white'};
@@ -22,7 +22,7 @@ const ChatRoom = ({room}: {room: Room }) => {
         }
     },[roomInfo.currentRoomName]);
 
-    const joinNewRoom = (room: Room): void => {
+    const joinNewRoom = (room: IRoom): void => {
         if (!!roomInfo.currentRoomType) {
             if (!window.confirm(`Do you want to leave ${roomInfo.currentRoomName}?`)) {
                 return;

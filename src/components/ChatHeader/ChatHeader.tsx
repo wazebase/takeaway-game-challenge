@@ -4,12 +4,12 @@ import {useNavigate} from "react-router-dom";
 import {logout} from "../../services/socket.service";
 import './chat-header.css';
 import logo from '../../assets/icons/takeaway-logo.png';
-import {UserState} from "../../models/UserState";
-import {State} from "../../state/State";
-import {GameState} from "../../models/GameState";
+import {IUserState} from "../../models/IUserState";
+import {IState} from "../../state/IState";
+import {IGameState} from "../../models/IGameState";
 const ChatHeader = () => {
-    const userInfo: UserState = useSelector((state: State) => state.userInfo);
-    const gameInfo: GameState = useSelector((state: State) => state.gameInfo);
+    const userInfo: IUserState = useSelector((state: IState) => state.userInfo);
+    const gameInfo: IGameState = useSelector((state: IState) => state.gameInfo);
     const navigate = useNavigate();
 
     const getBackToLogin = () => {

@@ -1,5 +1,5 @@
 import {createSlice, Draft, PayloadAction} from '@reduxjs/toolkit'
-import {GameState} from "../models/GameState";
+import {IGameState} from "../models/IGameState";
 
 export const gameSlice = createSlice({
     name: 'gameInfo',
@@ -12,7 +12,7 @@ export const gameSlice = createSlice({
         isMyTurn: false,
     },
     reducers: {
-        resetGameState: (state: Draft<GameState>) => {
+        resetGameState: (state: Draft<IGameState>) => {
             state.isGameFinished = false;
             state.isGameStarted = false;
             state.isWinner = false;
@@ -20,18 +20,18 @@ export const gameSlice = createSlice({
             state.isMyTurn = false;
             state.currentNumber = '';
         },
-        startGame: (state: Draft<GameState>) => {
+        startGame: (state: Draft<IGameState>) => {
             state.isGameStarted = true;
         },
-        finishGame: (state: Draft<GameState>, action: PayloadAction<boolean>) => {
+        finishGame: (state: Draft<IGameState>, action: PayloadAction<boolean>) => {
             state.isGameStarted = false;
             state.isGameFinished = true;
             state.isWinner = action.payload;
         },
-        setMyTurn: (state: Draft<GameState>, action: PayloadAction<boolean>) => {
+        setMyTurn: (state: Draft<IGameState>, action: PayloadAction<boolean>) => {
             state.isMyTurn = action.payload;
         },
-        setCurrentNumber: (state: Draft<GameState>, action: PayloadAction<string>) => {
+        setCurrentNumber: (state: Draft<IGameState>, action: PayloadAction<string>) => {
             state.currentNumber = action.payload;
         },
     },

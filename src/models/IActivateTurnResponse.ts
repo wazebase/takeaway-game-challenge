@@ -1,4 +1,4 @@
-export interface ActivateTurnResponse {
+export interface IActivateTurnResponse {
     state: 'play' | 'wait';
     user: string;
 }

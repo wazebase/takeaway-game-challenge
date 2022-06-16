@@ -1,9 +1,9 @@
 import store from '../store';
 import {addUserName, resetUserState} from "../state/UserSlice";
-import {Room} from "../models/Room";
+import {IRoom} from "../models/IRoom";
 import {resetRoomState, setRoomReady} from "../state/RoomSlice";
 import {finishGame, resetGameState, setMyTurn, startGame} from "../state/GameSlice";
-import {RandomNumberResponse} from "../models/RandomNumberResponse";
+import {IRandomNumberResponse} from "../models/IRandomNumberResponse";
 import {resetMessages} from "../state/MessageSlice";
 import {
     addMessageToStore,
@@ -12,10 +12,10 @@ import {
     sendMessage,
     setCurrentNumberAndSendMessage
 } from "./chat.service";
-import {ActivateTurnResponse} from "../models/ActivateTurnResponse";
-import {GameOverResponse} from "../models/GameOverResponse";
-import {OnReadyResponse} from "../models/OnReadyResponse";
-import {MessageResponse} from "../models/MessageResponse";
+import {IActivateTurnResponse} from "../models/IActivateTurnResponse";
+import {IGameOverResponse} from "../models/IGameOverResponse";
+import {IOnReadyResponse} from "../models/IOnReadyResponse";
+import {IMessageResponse} from "../models/IMessageResponse";
 const io = require("socket.io-client/dist/socket.io");
 
 const socketService = () => {
@@ -41,7 +41,7 @@ const socketService = () => {
         socket.emit('leaveRoom');
     }
 
-    const joinNewRoom = (room: Room): void => {
+    const joinNewRoom = (room: IRoom): void => {
         socket.emit('joinRoom', {username: store.getState().userInfo.username, room: room.name, roomType: room.type});
     }
 
@@ -54,7 +54,7 @@ const socketService = () => {
         socket.emit('sendNumber', {number: parseInt(store.getState().gameInfo.currentNumber, 10), selectedNumber});
     };
 
-    const handleRandomNumberResponse = (response: RandomNumberResponse): void => {
+    const handleRandomNumberResponse = (response: IRandomNumberResponse): void => {
         const [currentUserStyle, currentIconStyle]: [string, string] = getMessageStyle(response);
         if (response.isFirst) {
             handleFirstNumber(response, currentUserStyle);
@@ -64,14 +64,14 @@ const socketService = () => {
         handleResult(response, currentUserStyle);
     }
 
-    const handleFirstNumber = (response: RandomNumberResponse, messageClass: string): void => {
+    const handleFirstNumber = (response: IRandomNumberResponse, messageClass: string): void => {
         const isMyTurn: boolean = !!store.getState().userInfo.opponentName;
         setTimeout(()=> {store.dispatch(setMyTurn(isMyTurn))}, 300);
         setCurrentNumberAndSendMessage(response, messageClass);
         store.dispatch(startGame());
     }
 
-    const handleResult = (response: RandomNumberResponse, messageClass: string): void => {
+    const handleResult = (response: IRandomNumberResponse, messageClass: string): void => {
         if (response.isCorrectResult) {
             sendEquationMessage(response.number * 3 - response.selectedNumber, response.selectedNumber, messageClass);
             setCurrentNumberAndSendMessage(response, messageClass);
@@ -81,12 +81,12 @@ const socketService = () => {
         setCurrentNumberAndSendMessage(response, messageClass);
     }
 
-    const handleGameOver = (response: GameOverResponse): void => {
+    const handleGameOver = (response: IGameOverResponse): void => {
         const isWinner: boolean = store.getState().userInfo.username === response.user;
         store.dispatch(finishGame(isWinner));
     }
 
-    const handleTurnActivation = (response: ActivateTurnResponse): void => {
+    const handleTurnActivation = (response: IActivateTurnResponse): void => {
         const isCurrentUser: boolean = response.user === store.getState().userInfo.userId;
         const isPlayState: boolean | undefined = stateMap.get(response.state);
         const isMyTurn: boolean = (isCurrentUser && isPlayState) || (!isCurrentUser && !isPlayState);
@@ -94,12 +94,12 @@ const socketService = () => {
     }
 
     const addListeners = () => {
-        socket.on('message', (arg: MessageResponse) => addMessageToStore(arg));
-        socket.on('error', (arg: MessageResponse) => sendMessage({message: arg.message, messageClass: 'system-message'}));
-        socket.on('onReady', (arg: OnReadyResponse) => store.dispatch(setRoomReady(arg.state)));
-        socket.on('activateYourTurn', (arg: ActivateTurnResponse) => handleTurnActivation(arg));
-        socket.on('gameOver', (arg: GameOverResponse) => handleGameOver(arg));
-        socket.on('randomNumber', (arg: RandomNumberResponse) => handleRandomNumberResponse(arg));
+        socket.on('message', (arg: IMessageResponse) => addMessageToStore(arg));
+        socket.on('error', (arg: IMessageResponse) => sendMessage({message: arg.message, messageClass: 'system-message'}));
+        socket.on('onReady', (arg: IOnReadyResponse) => store.dispatch(setRoomReady(arg.state)));
+        socket.on('activateYourTurn', (arg: IActivateTurnResponse) => handleTurnActivation(arg));
+        socket.on('gameOver', (arg: IGameOverResponse) => handleGameOver(arg));
+        socket.on('randomNumber', (arg: IRandomNumberResponse) => handleRandomNumberResponse(arg));
     };
     return {login, addListeners, joinNewRoom, leaveRoom, startPlaying, sendNumber, logout};
 };

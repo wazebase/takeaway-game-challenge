@@ -1,7 +1,7 @@
-import {Room} from "./Room";
+import {IRoom} from "./IRoom";
 
-export interface RoomState {
-    rooms: Room[];
+export interface IRoomState {
+    rooms: IRoom[];
     currentRoomType: string;
     currentRoomName: string;
     isRoomReady: boolean;

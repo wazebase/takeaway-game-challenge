@@ -7,9 +7,9 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import {addListeners} from "./services/socket.service";
 import {getRooms} from "./services/room.service";
 import {useSelector} from "react-redux";
-import {State} from "./state/State";
+import {IState} from "./state/IState";
 function ChatGameApp() {
-    const isLoggedIn: boolean = useSelector((state: State) => state.userInfo.isLoggedIn);
+    const isLoggedIn: boolean = useSelector((state: IState) => state.userInfo.isLoggedIn);
     useEffect( () => {
         getRooms();
         addListeners();

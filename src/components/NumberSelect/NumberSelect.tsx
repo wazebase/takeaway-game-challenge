@@ -1,10 +1,10 @@
 import React from 'react';
 import NumberButton from "../NumberButton/NumberButton";
 import {useSelector} from "react-redux";
-import {State} from "../../state/State";
+import {IState} from "../../state/IState";
 
 const NumberSelect = () => {
-    const isMyTurn: boolean = useSelector((state: State) => state.gameInfo.isMyTurn);
+    const isMyTurn: boolean = useSelector((state: IState) => state.gameInfo.isMyTurn);
     return (
         <div id='number-select'
              className='d-flex justify-content-center my-3'

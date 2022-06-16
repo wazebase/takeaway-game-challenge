@@ -1,13 +1,13 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import {startPlaying} from "../../services/socket.service";
-import {State} from "../../state/State";
-import {RoomState} from "../../models/RoomState";
-import {GameState} from "../../models/GameState";
+import {IState} from "../../state/IState";
+import {IRoomState} from "../../models/IRoomState";
+import {IGameState} from "../../models/IGameState";
 
 const StartGameButton = () => {
-    const roomInfo: RoomState = useSelector((state: State) => state.roomInfo);
-    const gameInfo: GameState = useSelector((state: State) => state.gameInfo);
+    const roomInfo: IRoomState = useSelector((state: IState) => state.roomInfo);
+    const gameInfo: IGameState = useSelector((state: IState) => state.gameInfo);
     if (gameInfo.isGameStarted) {
         return null;
     }

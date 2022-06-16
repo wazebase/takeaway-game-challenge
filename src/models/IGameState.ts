@@ -1,4 +1,4 @@
-export interface GameState {
+export interface IGameState {
     isGameStarted: boolean;
     isGameFinished: boolean;
     isWinner: boolean;

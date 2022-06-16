@@ -1,8 +1,8 @@
 import React from 'react';
-import {Message} from "../../models/Message";
+import {IMessage} from "../../models/IMessage";
 import './chat-message.css';
 
-const ChatMessage = ({message}: {message: Message}) => (
+const ChatMessage = ({message}: {message: IMessage}) => (
     <div className='message-container py-1 mt-3'>
         <div className={`${message.messageClass} row align-items-center`}>
         <div className={`${message.iconClass} icon-container col-2 p-0`}></div>

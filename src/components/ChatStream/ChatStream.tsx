@@ -1,14 +1,14 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import {Message} from "../../models/Message";
+import {IMessage} from "../../models/IMessage";
 import ChatMessage from "../ChatMessage/ChatMessage";
 import  './chat-stream.css';
-import {State} from "../../state/State";
+import {IState} from "../../state/IState";
 const ChatStream = () => {
-    const messages: Message[] = useSelector((state: State) => state.messageInfo.messages);
+    const messages: IMessage[] = useSelector((state: IState) => state.messageInfo.messages);
     return (
         <div className='p-3 chat-stream'>
-            {messages.map((message: Message, i: number) => <ChatMessage message={message} key = {i}/>)}
+            {messages.map((message: IMessage, i: number) => <ChatMessage message={message} key = {i}/>)}
         </div>
     )
 };

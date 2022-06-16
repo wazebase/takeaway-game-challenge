@@ -6,13 +6,13 @@ import {addMessage} from "../../state/MessageSlice";
 import winIcon from '../../assets/icons/win.png';
 import loseIcon from '../../assets/icons/lose.png';
 import {clearChat} from "../../services/chat.service";
-import {State} from "../../state/State";
-import {GameState} from "../../models/GameState";
-import {UserState} from "../../models/UserState";
+import {IState} from "../../state/IState";
+import {IGameState} from "../../models/IGameState";
+import {IUserState} from "../../models/IUserState";
 Modal.setAppElement('#root');
 const GameResultModal = () => {
-    const gameInfo: GameState = useSelector((state: State) => state.gameInfo);
-    const userInfo: UserState = useSelector((state: State) => state.userInfo);
+    const gameInfo: IGameState = useSelector((state: IState) => state.gameInfo);
+    const userInfo: IUserState = useSelector((state: IState) => state.userInfo);
     const message: string = gameInfo.isWinner ? 'You won' : 'You lost';
     const customStyles = {
         content: {
