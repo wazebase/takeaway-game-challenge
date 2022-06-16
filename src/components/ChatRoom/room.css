@@ -1,0 +1,19 @@
+.room-box {
+    cursor: pointer;
+    background-color: white;
+    border-bottom: 0.5px solid grey;
+}
+
+.room-box:hover {
+    background-color: #1574F5;
+    color: white;
+}
+
+.room-box:hover .arrow {
+    filter: invert(0%) sepia(0%) brightness(614%) contrast(314%);
+}
+
+.arrow {
+    height: 60px;
+    width: 40px;
+}

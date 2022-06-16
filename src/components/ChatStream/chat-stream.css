@@ -1,0 +1,26 @@
+.system-message {
+    grid-column: 1/2;
+}
+.opponent-message {
+    grid-column: 1/2;
+}
+.user-message {
+    grid-column: 2/3;
+    flex-direction: row-reverse;
+}
+
+.chat-stream {
+    overflow-y: scroll;
+}
+
+.opponent-icon {
+    background: url("../../assets/icons/opponent-icon.png") no-repeat;
+    background-size: 50% 100%;
+    background-position-x: center;
+}
+
+.user-icon {
+    background: url("../../assets/icons/player-icon.svg") no-repeat;
+    background-size: 50% 100%;
+    background-position-x: center;
+}

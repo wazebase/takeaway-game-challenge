@@ -1,0 +1,5 @@
+.chat {
+    height: 37.5rem;
+    overflow-y: auto;
+    padding: 1.875rem 0rem !important;
+}

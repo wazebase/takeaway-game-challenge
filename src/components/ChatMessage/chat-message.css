@@ -1,0 +1,12 @@
+.message-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.message {
+    height: 40px;
+    background-color: #F8F5F2;
+}
+
+.icon-container {
+    height: 40px;
+}

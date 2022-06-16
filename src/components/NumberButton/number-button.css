@@ -1,0 +1,20 @@
+.number-button {
+    color: #1574F5;
+    background-color: white;
+}
+
+.round-button {
+    border-radius: 50%;
+    width: 4.375rem;
+    height: 4.375rem;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: bold;
+    border: 0.063rem solid #D7D7D7;
+    box-shadow: 0px 0.063rem 0.125rem black;
+}
+
+.number-button:hover {
+    background-color: #1574F5;
+    color: white;
+}

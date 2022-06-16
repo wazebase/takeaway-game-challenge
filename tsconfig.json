@@ -21,6 +21,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
+    "src",
+    "../../../../Library/Caches/JetBrains/WebStorm2021.1/javascript/typings/jasmine/4.0.3/node_modules/@types/jasmine/index.d.ts"
   ]
 }

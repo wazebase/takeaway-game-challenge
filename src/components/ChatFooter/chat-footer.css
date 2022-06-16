@@ -1,0 +1,13 @@
+.chat-footer {
+    background-color: #0A3847 !important;
+    height: 73px;
+    color: white;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.takeaway {
+    margin-top: 1px;
+}
